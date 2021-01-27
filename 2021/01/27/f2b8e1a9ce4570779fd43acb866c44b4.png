@@ -1,0 +1,113 @@
+function edit(orig,ret)_om=orig[1].memory or orig[1][1]_ov=orig[3].value or orig[3][1]_on=orig[2].name or orig[2][1]gg.clearResults()gg.setRanges(_om)gg.searchNumber(_ov,orig[3].type or orig[3][2])sz=gg.getResultCount()if sz<1 then gg.toast(_on.." 开启失败")else sl=gg.getResults(50000)for i=1,sz do ist=true for v=4,#orig do if ist==true and sl[i].value==_ov then cd={{}}cd[1].address=sl[i].address+(orig[v].offset or orig[v][2])cd[1].flags=orig[v].type or orig[v][3]szpy=gg.getValues(cd)cdlv=orig[v].lv or orig[v][1]cdv=szpy[1].value if cdlv==cdv then pdjg=true ist=true else pdjg=false ist=false end end end if pdjg==true then szpy=sl[i].address for x=1,#(ret)do xgpy=szpy+(ret[x].offset or ret[x][2])xglx=ret[x].type or ret[x][3]xgsz=ret[x].value or ret[x][1]xgdj=ret[x].freeze or ret[x][4]xgsj={{address=xgpy,flags=xglx,value=xgsz}}if xgdj==true then xgsj[1].freeze=xgdj gg.addListItems(xgsj)else gg.setValues(xgsj)end end xgjg=true end end if xgjg==true then gg.toast(_on.." 开启成功")else gg.toast(_on.." 开启失败")end end end
+
+function Main0()
+SN = gg.choice({
+	 "开启全屏",
+	 "退出脚本",
+}, nil, "")
+if SN==1 then
+	 HS4()
+end
+if SN==2 then
+	 HS2()
+end
+FX1=0
+end
+
+function HS4()
+gg.alert("提示开启成功前请勿点击悬浮窗，否则可能会导致开启失败或卡死。开启大概需要5~30s。")
+edit({
+{4}, 
+{"防封"}, 
+{16384, gg.TYPE_DWORD}, 
+{16384, 4, gg.TYPE_DWORD}, 
+{16384, 12, gg.TYPE_DWORD}, 
+{16384, 20, gg.TYPE_DWORD}, 
+{16384, 16, gg.TYPE_DWORD}, 
+{16384, 8, gg.TYPE_DWORD} 
+},
+{
+{0, 0, 4, true},
+{0, 4, 4, true},
+{0, 8, 4, true},
+{0, 12, 4, true},
+{0, 16, 4, true},
+{0, 20, 4, true},
+{65538, -248, 4, true},
+{65538, -252, 4, true}
+
+})
+gg.clearResults()
+if gg.isVisible(true) then
+gg.setVisible(false)
+end
+
+gg.clearResults()
+
+edit({
+
+{8}, 
+
+{"去边框"}, 
+
+{-369098492, gg.TYPE_DWORD}, 
+
+{1056964608, 4, gg.TYPE_DWORD}
+
+},
+
+{
+
+{0, 4, gg.TYPE_FLOAT, false} 
+
+})
+
+gg.clearResults()
+edit({
+
+{8}, 
+
+{"居中视角"}, 
+
+{1098907648, gg.TYPE_DWORD}, 
+
+{1091567616, 4, gg.TYPE_DWORD}
+
+},
+
+{
+
+{0, 8, gg.TYPE_FLOAT, false} 
+
+})
+
+gg.clearResults()
+ edit({
+{gg.REGION_ANONYMOUS}, 
+{"3.8视野"}, 
+{1078774989, 4}, 
+{1055119114, 4, 4},
+{1078774989, 12, 4}
+},
+{
+{4.4, 12, gg.TYPE_FLOAT, true} 
+})
+gg.clearResults()
+
+end
+
+function HS2()
+	 os.exit()
+end
+
+
+
+while true do
+if gg.isVisible(true) then
+    FX1 = nil
+    gg.setVisible(false)
+  end
+  if FX1 == nil then
+    Main0()
+  end
+end
