@@ -1,0 +1,283 @@
+function SearchWrite(Search, Write, Type) gg.clearResults() gg.setVisible(false) gg.searchNumber(Search[1][1], Type) local count = gg.getResultCount() local result = gg.getResults(count) gg.clearResults() local data = {} local base = Search[1][2] if (count > 0) then for i, v in ipairs(result) do v.isUseful = true end for k=2, #Search do local tmp = {} local offset = Search[k][2] - base local num = Search[k][1] for i, v in ipairs(result) do tmp[#tmp+1] = {} tmp[#tmp].address = v.address + offset tmp[#tmp].flags = v.flags end tmp = gg.getValues(tmp) for i, v in ipairs(tmp) do if ( tostring(v.value) ~= tostring(num) ) then result[i].isUseful = false end end end for i, v in ipairs(result) do if (v.isUseful) then data[#data+1] = v.address end end if (#data > 0) then gg.toast("修改"..#data.."条数据.开启成功") local t = {} local base = Search[1][2] for i=1, #data do for k, w in ipairs(Write) do offset = w[2] - base t[#t+1] = {} t[#t].address = data[i] + offset t[#t].flags = Type t[#t].value = w[1] if (w[3] == true) then local item = {} item[#item+1] = t[#t] item[#item].freeze = true gg.addListItems(item) end end end gg.setValues(t) else gg.toast("搜索0条数据.修改失败", false) return false end else gg.toast("搜索0条数据.修改失败") return false end end
+function gkll()
+SN = gg.choice({
+	 "⭕️👉🏻伊莎👈🏻⭕️",
+	 "⭕️👉🏻泷村👈🏻⭕️",
+	 "⭕️👉🏻尤里👈🏻⭕️",
+	 "⭕️👉🏻小黑👈🏻⭕️",
+	 "⭕️👉🏻摩柯👈🏻⭕️",
+	 "⭕️👉🏻关闭脚本👈🏻⭕️",
+}, nil, "")
+if SN==1 then
+	 A()
+end
+if SN==2 then
+	 B()
+end
+if SN==3 then
+	 C()
+end
+if SN==4 then
+	 D()
+end
+if SN==5 then
+	 E()
+end
+if SN==6 then
+	 os.exit()
+end
+GKLL= -1
+end
+
+function A()
+SN = gg.choice({
+	 "⭕️👉🏻开启修改👈🏻⭕️",
+	 "⭕️👉🏻技能恢复👈🏻⭕️",
+	 "⭕️👉🏻返回主页👈🏻⭕️",
+}, nil, "ps:伊莎拳大招5改8")
+if SN==1 then
+	 A1()
+end
+if SN==2 then
+	 A2()
+end
+if SN==3 then
+	 A3()
+end
+GKLL= -1
+end
+
+function A1()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{3226, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1090519040, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function A2()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{3226, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1084227584, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function A3()
+	 gkll()
+end
+
+function B()
+SN = gg.choice({
+	 "⭕️👉🏻开启修改👈🏻⭕️",
+	 "⭕️👉🏻技能恢复👈🏻⭕️",
+	 "⭕️👉🏻返回主页👈🏻⭕️",
+}, nil, "ps:泷村大招9改12")
+if SN==1 then
+	 B1()
+end
+if SN==2 then
+	 B2()
+end
+if SN==3 then
+	 B3()
+end
+GKLL= -1
+end
+
+function B1()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{3258, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1094713344, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function B2()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{3258, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1091567616, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function B3()
+	 gkll()
+end
+
+function C()
+SN = gg.choice({
+	 "⭕️👉🏻开启修改👈🏻⭕️",
+	 "⭕️👉🏻技能恢复👈🏻⭕️",
+	 "⭕️👉🏻返回主页👈🏻⭕️",
+}, nil, "ps:尤里二技能7改9")
+if SN==1 then
+	 C1()
+end
+if SN==2 then
+	 C2()
+end
+if SN==3 then
+	 C3()
+end
+GKLL= -1
+end
+
+function C1()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7636, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091043328, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7644, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091043328, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function C2()
+ gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7636, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7644, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function C3()
+	 gkll()
+end
+
+function D()
+SN = gg.choice({
+	 "⭕️👉🏻开启修改👈🏻⭕️",
+	 "⭕️👉🏻技能恢复👈🏻⭕️",
+	 "⭕️👉🏻返回主页👈🏻⭕️",
+}, nil, "ps:小黑一技能9改12,大招7改9,位移9改15")
+if SN==1 then
+	 D1()
+end
+if SN==2 then
+	 D2()
+end
+if SN==3 then
+	 D3()
+end
+GKLL= -1
+end
+
+function D1()
+ gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7353, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1094713344, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+ gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7358, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1090519040, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7360, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1097859072, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function D2()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7353, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091567616, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7358, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7360, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091567616, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function D3()
+	 gkll()
+end
+
+function E()
+SN = gg.choice({
+	 "⭕️👉🏻开启修改👈🏻⭕️",
+	 "⭕️👉🏻技能恢复👈🏻⭕️",
+	 "⭕️👉🏻返回主页👈🏻⭕️",
+}, nil, "ps:摩柯一技能10改12.5,大招12改15")
+if SN==1 then
+	 E1()
+end
+if SN==2 then
+	 E2()
+end
+if SN==3 then
+	 E3()
+end
+GKLL= -1
+end
+
+function E1()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7313, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1095237632, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7324, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1097859072, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function E2()
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7313, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1092616192, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7324, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1094713344, 36} }
+SearchWrite(tb1, tb2, dataType)
+end
+
+function E3()
+	 gkll()
+end
+
+
+
+while true do
+  if gg.isVisible(true) then
+    GKLL = 1
+    gg.setVisible(false)
+  end
+  gg.clearResults()
+  if GKLL == 1 then
+    gkll()
+  end
+end
+
+
