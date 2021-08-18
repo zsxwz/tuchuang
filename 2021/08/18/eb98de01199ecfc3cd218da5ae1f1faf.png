@@ -1,0 +1,213 @@
+function SearchWrite(Search, Write, Type) gg.clearResults() gg.setVisible(false) gg.searchNumber(Search[1][1], Type) local count = gg.getResultCount() local result = gg.getResults(count) gg.clearResults() local data = {} local base = Search[1][2] if (count > 0) then for i, v in ipairs(result) do v.isUseful = true end for k=2, #Search do local tmp = {} local offset = Search[k][2] - base local num = Search[k][1] for i, v in ipairs(result) do tmp[#tmp+1] = {} tmp[#tmp].address = v.address + offset tmp[#tmp].flags = v.flags end tmp = gg.getValues(tmp) for i, v in ipairs(tmp) do if ( tostring(v.value) ~= tostring(num) ) then result[i].isUseful = false end end end for i, v in ipairs(result) do if (v.isUseful) then data[#data+1] = v.address end end if (#data > 0) then gg.toast("修改"..#data.."条数据.开启成功") local t = {} local base = Search[1][2] for i=1, #data do for k, w in ipairs(Write) do offset = w[2] - base t[#t+1] = {} t[#t].address = data[i] + offset t[#t].flags = Type t[#t].value = w[1] if (w[3] == true) then local item = {} item[#item+1] = t[#t] item[#item].freeze = true gg.addListItems(item) end end end gg.setValues(t) else gg.toast("搜索0条数据.修改失败", false) return false end else gg.toast("搜索0条数据.修改失败") return false end end
+state={} state.a="[开启]" state.b="[开启]" state.c="[开启]" state.d="[开启]" state.e="[开启]" state.f="[1.13倍]"
+function Main()  
+SN =gg.multiChoice({ 
+ "伊莎"..state.a,  
+ "泷村"..state.b,  
+ "尤里"..state.c,  
+ "小黑"..state.d,
+ "摩柯"..state.e,
+ "加速"..state.f,
+ "退出脚本" }, nil, "")  
+-- if SN == nil then Main() end  
+ if SN[1] == true then   a()  end  
+ if SN[2] == true then   b()  end  
+ if SN[3] == true then   c()  end  
+ if SN[4] == true then   d()  end
+ if SN[5] == true then   e() end
+ if SN[6] == true then   f() end
+ if SN[7] == true then os.exit() end
+ ly = 0
+end
+
+function a()
+  if state.a=="[开启]" then
+local dataType = 4
+local tb1 = {{3226, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("伊莎大招5改7")
+  state.a="[关闭]"
+  elseif state.a=="[关闭]" then
+  local dataType = 4
+local tb1 = {{3226, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1084227584, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("伊莎大招恢复")
+  state.a="[开启]"
+  end
+end
+
+function b()
+  if state.b=="[开启]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{3258, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1093664768, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("泷村大招9改11")
+  state.b="[关闭]"
+  elseif state.b=="[关闭]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{3258, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1091567616, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("泷村大招恢复")
+  state.b="[开启]"
+  end
+end
+
+function c()
+  if state.c=="[开启]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7636, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091043328, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7644, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091043328, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("尤里二技能7改8.5")
+  state.c="[关闭]"
+  elseif state.c=="[关闭]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7636, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7644, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("尤里二技能恢复")
+  state.c="[开启]"
+  end
+end
+
+function d()
+  if state.d=="[开启]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7353, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1093664768, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7358, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1090519040, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7360, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1093664768, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("小黑一技能9改11,大招7改8,传送9改11")
+  state.d="[关闭]"
+  elseif state.d=="[关闭]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7353, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091567616, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7358, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1088421888, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7360, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1091567616, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("小黑技能恢复")
+  state.d="[开启]"
+  end
+end
+
+function e()
+  if state.e=="[开启]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7313, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1094713344, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7324, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1096810496, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("摩柯一技能10改12,大招12改14")
+  state.e="[关闭]"
+  elseif state.e=="[关闭]" then
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7313, 0}, {1, 4}, {1, 8}, }
+local tb2 = {{1092616192, 36} }
+SearchWrite(tb1, tb2, dataType)
+
+gg.setRanges(4)
+local dataType = 4
+local tb1 = {{7324, 0}, {1, 4}, {4, 8}, }
+local tb2 = {{1094713344, 36} }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("摩柯技能恢复")
+  state.e="[开启]"
+  end
+end
+
+function f()
+  if state.f=="[1.13倍]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1.13, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("1.13倍加速")
+  state.f="[1.1倍]"
+  elseif state.f=="[1.1倍]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1.1, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("1.1倍加速")
+  state.f="[1.05倍]"
+  elseif state.f=="[1.05倍]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1.05, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("1.05倍加速")
+  state.f="[关闭]"
+  elseif state.f=="[关闭]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("关闭加速")
+  state.f="[1.13倍]"
+  end
+end
+
+while true do  
+ if gg.isVisible(true) then
+     ly = 1
+     gg.setVisible(false)
+ end
+ if ly == 1 then
+ Main()
+ end
+end
