@@ -1,0 +1,452 @@
+--------------------<脚本配置>--------------------
+GG='http://www.iyuji.cn/iyuji/s/R2ppeDJISEpZMDZuN1lJdndWN3Ntdz09/1630190118082804'--讯飞语记链接
+local JG = gg.makeRequest(GG).content
+local JG0 = gg.makeRequest(GG).content:match('<div class="read_txt">阅读&nbsp; (.-)</div>')
+local JG1 = JG:match('【访问】(.-)【状态】')
+--------------------<脚本配置>--------------------
+function split(szFullString, szSeparator) local nFindStartIndex = 1 local nSplitIndex = 1 local nSplitArray = {} while true do local nFindLastIndex = string.find(szFullString, szSeparator, nFindStartIndex) if not nFindLastIndex then nSplitArray[nSplitIndex] = string.sub(szFullString, nFindStartIndex, string.len(szFullString)) break end nSplitArray[nSplitIndex] = string.sub(szFullString, nFindStartIndex, nFindLastIndex - 1) nFindStartIndex = nFindLastIndex + string.len(szSeparator) nSplitIndex = nSplitIndex + 1 end return nSplitArray end function xgxc(szpy, qmxg) for x = 1, #(qmxg) do xgpy = szpy + qmxg[x]["offset"] xglx = qmxg[x]["type"] xgsz = qmxg[x]["value"] gg.setValues({[1] = {address = xgpy, flags = xglx, value = xgsz}}) xgsl = xgsl + 1 end end function xqmnb(qmnb) gg.clearResults() gg.setRanges(qmnb[1]["memory"]) gg.searchNumber(qmnb[3]["value"], qmnb[3]["type"]) if gg.getResultCount() == 0 then gg.toast(qmnb[2]["name"] .. "开启失败") else gg.refineNumber(qmnb[3]["value"], qmnb[3]["type"]) gg.refineNumber(qmnb[3]["value"], qmnb[3]["type"]) gg.refineNumber(qmnb[3]["value"], qmnb[3]["type"]) if gg.getResultCount() == 0 then gg.toast(qmnb[2]["name"] .. "开启失败") else sl = gg.getResults(999999) sz = gg.getResultCount() xgsl = 0 if sz > 999999 then sz = 999999 end for i = 1, sz do pdsz = true for v = 4, #(qmnb) do if pdsz == true then pysz = {} pysz[1] = {} pysz[1].address = sl[i].address + qmnb[v]["offset"] pysz[1].flags = qmnb[v]["type"] szpy = gg.getValues(pysz) pdpd = qmnb[v]["lv"] .. ";" .. szpy[1].value szpd = split(pdpd, ";") tzszpd = szpd[1] pyszpd = szpd[2] if tzszpd == pyszpd then pdjg = true pdsz = true else pdjg = false pdsz = false end end end if pdjg == true then szpy = sl[i].address xgxc(szpy, qmxg) xgjg = true end end if xgjg == true then gg.toast(qmnb[2]["name"] .. ",共修改" .. xgsl .. "条数据") else gg.toast(qmnb[2]["name"] .. "开启失败") end end end end
+--仿XS
+function SearchWrite(Search, Write, Type) gg.clearResults() gg.setVisible(false) gg.searchNumber(Search[1][1], Type) local count = gg.getResultCount() local result = gg.getResults(count) gg.clearResults() local data = {} local base = Search[1][2] if (count > 0) then for i, v in ipairs(result) do v.isUseful = true end for k=2, #Search do local tmp = {} local offset = Search[k][2] - base local num = Search[k][1] for i, v in ipairs(result) do tmp[#tmp+1] = {} tmp[#tmp].address = v.address + offset tmp[#tmp].flags = v.flags end tmp = gg.getValues(tmp) for i, v in ipairs(tmp) do if ( tostring(v.value) ~= tostring(num) ) then result[i].isUseful = false end end end for i, v in ipairs(result) do if (v.isUseful) then data[#data+1] = v.address end end if (#data > 0) then gg.toast("修改"..#data.."条数据.开启成功") local t = {} local base = Search[1][2] for i=1, #data do for k, w in ipairs(Write) do offset = w[2] - base t[#t+1] = {} t[#t].address = data[i] + offset t[#t].flags = Type t[#t].value = w[1] if (w[3] == true) then local item = {} item[#item+1] = t[#t] item[#item].freeze = true gg.addListItems(item) end end end gg.setValues(t) else gg.toast("搜索0条数据.修改失败", false) return false end else gg.toast("搜索0条数据.修改失败") return false end end
+--指针
+--------------------<分区状态>--------------------
+state={} state.a="[开启]" state.b="[开启]" state.c="[开启]" state.d="[开启]" state.e="[开启]" state.f="[1.13倍]"
+csgn={} csgn.a="[开启]" csgn.b="[开启]" csgn.c="[开发中]" csgn.d="[开启]" csgn.e="[开启]" 
+--------------------<分区1配置>--------------------
+function Main()  
+--SN = gg.multiChoice({
+SN = gg.choice({
+"→测试功能←["..JG1.."]", 
+"→伊莎←"..state.a,  
+"→泷村←"..state.b,  
+"→尤里←"..state.c,  
+"→小黑←"..state.d,
+"→摩柯←"..state.e,
+"→加速←"..state.f,
+"→退出脚本←" }, nil, "")  
+-- if SN == nil then Main() end  
+ if SN == 1 then   CSGN()  end  
+ if SN == 2 then   A1()  end  
+ if SN == 3 then   A2()  end  
+ if SN == 4 then   A3()  end
+ if SN == 5 then   A4() end
+ if SN == 6 then   A5() end
+ if SN == 7 then   A6() end
+ if SN == 8 then os.exit() end
+ GKLL = -1
+end
+--------------------<分区2配置>--------------------
+function CSGN()  
+if JG1=="开放" then
+SN1 = gg.choice({
+ "→极乐鸟←"..csgn.a, 
+ "→冷鸢←"..csgn.b,  
+ "→未知功能←"..csgn.c,  
+ "→返回主页←",
+ "→退出脚本←" }, nil, "测试功能随时可能关闭")  
+ if SN1 == 1 then   B1()  end  
+ if SN1 == 2 then   B2()  end  
+ if SN1 == 3 then   B3()  end  
+ if SN1 == 4 then   Main() end
+ if SN1 == 5 then os.exit() end
+ else
+ gg.toast("测试功能暂时关闭")
+ Main()
+ GKLL = -1
+ end
+end
+--------------------<分区1功能>--------------------
+function A1()
+  if state.a=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "伊莎拳大招"},
+{["value"] = 3226, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 7,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("伊莎拳大招5改7")
+  state.a="[关闭]"
+  elseif state.a=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "伊莎拳大招恢复"},
+{["value"] = 3226, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 5,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("伊莎拳大招恢复")
+  state.a="[开启]"
+  end
+end
+
+function A2()
+  if state.b=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "泷村大招"},
+{["value"] = 3258, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 11,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("泷村大招9改11")
+  state.b="[关闭]"
+  elseif state.b=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "泷村大招恢复"},
+{["value"] = 3258, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 11,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("泷村大招恢复")
+  state.b="[开启]"
+  end
+end
+
+function A3()
+  if state.c=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "尤里二技能(1)"},
+{["value"] = 7636, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 8.5,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "尤里二技能(2)"},
+{["value"] = 7644, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 8.5,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("尤里二技能7改8.5")
+  state.c="[关闭]"
+  elseif state.c=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "尤里二技能恢复(1)"},
+{["value"] = 7636, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 7,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "尤里二技能恢复(2)"},
+{["value"] = 7644, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 7,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("尤里二技能恢复")
+  state.c="[开启]"
+  end
+end
+
+function A4()
+  if state.d=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "小黑一技能"},
+{["value"] = 7353, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 12,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "小黑大招"},
+{["value"] = 7358, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 8,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "小黑传送"},
+{["value"] = 7360, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 15,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("小黑一技能9改12,大招7改8,传送9改15")
+  state.d="[关闭]"
+  elseif state.d=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "小黑一技能恢复"},
+{["value"] = 7353, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 9,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "小黑大招恢复"},
+{["value"] = 7358, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 7,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "小黑传送恢复"},
+{["value"] = 7360, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 9,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("小黑一技能,大招,传送恢复")
+  state.d="[开启]"
+  end
+end
+
+function A5()
+  if state.e=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "摩柯一技能"},
+{["value"] = 7313, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 12,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "摩柯大招"},
+{["value"] = 7324, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 14,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("摩柯一技能10改12,大招12改14")
+  state.e="[关闭]"
+  elseif state.e=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "摩柯一技能恢复"},
+{["value"] = 7313, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 12,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "摩柯大招恢复"},
+{["value"] = 7324, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 4,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 14,["offset"] =36, ["type"] = 16},
+}
+xqmnb(qmnb)
+gg.toast("摩柯一技能,大招恢复")
+  state.e="[开启]"
+  end
+end
+
+function A6()
+  if state.f=="[1.13倍]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1.13, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("1.13倍加速")
+  state.f="[1.1倍]"
+  elseif state.f=="[1.1倍]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1.1, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("1.1倍加速")
+  state.f="[1.05倍]"
+  elseif state.f=="[1.05倍]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1.05, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("1.05倍加速")
+  state.f="[关闭]"
+  elseif state.f=="[关闭]" then
+gg.setRanges(8)
+local dataType = 16
+local tb1 = {{52.35987472534, 0}, }
+local tb2 = {{1, 32}, }
+SearchWrite(tb1, tb2, dataType)
+gg.toast("关闭加速")
+  state.f="[1.13倍]"
+  end
+end
+--------------------<分区2功能>--------------------
+function B1()
+  if csgn.a=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "50%"},
+{["value"] = 3191, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 12,["offset"] =112, ["type"] = 4},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "100%"},
+{["value"] = 3192, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 12,["offset"] =112, ["type"] = 4},
+}
+xqmnb(qmnb)
+gg.toast("极乐鸟一二技能释放改锁定")
+  csgn.a="[关闭]"
+  elseif csgn.a=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "50%"},
+{["value"] = 3191, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 5,["offset"] =112, ["type"] = 4},
+}
+xqmnb(qmnb)
+
+qmnb = {
+{["memory"] = 4},
+{["name"] = "100%"},
+{["value"] = 3192, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 23,["offset"] =112, ["type"] = 4},
+}
+xqmnb(qmnb)
+gg.toast("极乐鸟一二技能恢复")
+  csgn.a="[开启]"
+  end
+end
+
+function B2()
+  if csgn.b=="[开启]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "100%"},
+{["value"] = 3956, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 12,["offset"] =112, ["type"] = 4},
+}
+xqmnb(qmnb)
+gg.toast("冷鸢一技能释放改锁定")
+  csgn.b="[关闭]"
+  elseif csgn.b=="[关闭]" then
+qmnb = {
+{["memory"] = 4},
+{["name"] = "100%"},
+{["value"] = 3956, ["type"] = 4},
+{["lv"] = 1,["offset"] =4, ["type"] = 4},
+{["lv"] = 1,["offset"] =8, ["type"] = 4},
+}
+qmxg = {
+{["value"] = 10,["offset"] =112, ["type"] = 4},
+}
+xqmnb(qmnb)
+gg.toast("冷鸢一技能恢复")
+  csgn.b="[开启]"
+  end
+end
+
+function B3()
+gg.toast("都写着开发中了")
+end
+--------------------<脚本配置>--------------------
+while true do  
+ if gg.isVisible(true) then
+     GKLL = nil
+     gg.setVisible(false)
+ end
+ gg.clearResults()
+ if GKLL == nil then
+ Main()
+ end
+end
+----------END----------END----------END----------END----------
